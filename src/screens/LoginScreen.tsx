@@ -5,7 +5,6 @@ import {
   Button, 
   Card, 
   Divider,
-  Surface,
   Icon,
   ActivityIndicator 
 } from 'react-native-paper';
@@ -41,14 +40,6 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
     }
   };
 
-  const handleDisconnect = async () => {
-    try {
-      await disconnect();
-    } catch (error) {
-      alertAndLog('Disconnection failed', 'Failed to disconnect wallet.');
-    }
-  };
-
   const handleDownloadWallet = () => {
     // Open Phantom wallet download page (most popular Solana mobile wallet)
     const walletUrl = 'https://phantom.app/download';
@@ -56,103 +47,6 @@ export function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
       alertAndLog('Error', 'Unable to open wallet download page. Please visit phantom.app in your browser.');
     });
   };
-
-  // If already connected, show connected state
-  if (selectedAccount) {
-    return (
-      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <ScrollView contentContainerStyle={styles.scrollContent}>
-          <View style={styles.header}>
-            <Text 
-              variant="headlineMedium" 
-              style={{ 
-                color: theme.colors.primary,
-                fontWeight: 'bold',
-                textAlign: 'center'
-              }}
-            >
-              Welcome to Your Journey!
-            </Text>
-            <Text 
-              variant="bodyLarge" 
-              style={{ 
-                color: theme.colors.onSurfaceVariant,
-                textAlign: 'center',
-                marginTop: 8
-              }}
-            >
-              Your wallet is connected and ready
-            </Text>
-          </View>
-
-          <Card style={[styles.card, { backgroundColor: theme.colors.surface }]}>
-            <Card.Content style={styles.cardContent}>
-              <View style={styles.successIcon}>
-                <Icon 
-                  source="check-circle" 
-                  size={64} 
-                  color={theme.colors.success} 
-                />
-              </View>
-              
-              <Text 
-                variant="titleLarge" 
-                style={{ 
-                  color: theme.colors.onSurface,
-                  textAlign: 'center',
-                  marginBottom: 16
-                }}
-              >
-                Ready for Wellness Challenges
-              </Text>
-
-              <Surface 
-                style={[
-                  styles.addressContainer, 
-                  { backgroundColor: theme.colors.surfaceVariant }
-                ]}
-              >
-                <Text 
-                  variant="labelMedium" 
-                  style={{ color: theme.colors.onSurfaceVariant }}
-                >
-                  Connected Address:
-                </Text>
-                <Text 
-                  variant="bodyMedium" 
-                  style={{ 
-                    color: theme.colors.onSurface,
-                    fontFamily: 'monospace'
-                  }}
-                >
-                  {selectedAccount.address}
-                </Text>
-              </Surface>
-
-              <Button
-                mode="contained"
-                onPress={onLoginSuccess}
-                style={[{ backgroundColor: theme.colors.primary }]}
-                labelStyle={{ color: theme.colors.onPrimary }}
-                icon="rocket-launch"
-              >
-                Start My Wellness Journey
-              </Button>
-
-              <Button
-                mode="outlined"
-                onPress={handleDisconnect}
-                style={[{ borderColor: theme.colors.outline }]}
-                labelStyle={{ color: theme.colors.error }}
-              >
-                Disconnect Wallet
-              </Button>
-            </Card.Content>
-          </Card>
-        </ScrollView>
-      </View>
-    );
-  }
 
   // Login/Connect state
   return (

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DetoxMine",
-    "slug": "detoxmine",
+    "slug": "solana-mobile-expo-template",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,9 @@
       "eas": {
         "projectId": "d8cd811c-687b-4532-9e70-3cc3c5852055"
       }
-    }
+    },
+    "plugins": [
+      "expo-build-properties"
+    ]
   }
 }

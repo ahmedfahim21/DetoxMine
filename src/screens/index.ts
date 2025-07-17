@@ -1,5 +1,6 @@
 export * from "./HomeScreen";
 export * from "./SettingsScreen";
-export * from "./BlankScreen";
+export { default as BlankScreen } from "./BlankScreen";
 export * from "./SplashScreen";
 export * from "./LoginScreen";
+export * from "./UsageStatsScreen";
